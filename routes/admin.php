@@ -275,9 +275,15 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth'
     Route::group(['middleware' => 'permission:screen.writer.index'],function () {
         //展示页
         Route::get('screenwriter/index','ScreenwriterController@index')->name('admin.screen.writer');
+        Route::get('screenwriter/data', 'ScreenwriterController@data')->name('admin.screen.writer.data');
 
         //添加
-//        Route::get('');
+        Route::get('screenwriter/create','ScreenwriterController@create')->name('admin.screen.writer.create');
+        Route::post('screenwriter/save', 'ScreenwriterController@save')->name('admin.screen.writer.save');
+
+        //编辑
+        Route::get('screenwriter/{id}/edit','ScreenwriterController@edit')->name('admin.screen.writer.edit');
+        Route::put('screenwriter/{id}/update', 'ScreenwriterController@update')->name('admin.screen.writer.update');
     });
 });
 
