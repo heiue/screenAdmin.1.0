@@ -15,12 +15,20 @@ use Illuminate\Http\Request;
 
 class ScreenwriterController extends Controller
 {
-    //编剧列表页
+    /**
+     * @author WEIYIZHENG
+     * @remark 编剧列表页
+     * */
     public function index() {
         return view('admin.screenwriter.index');
     }
 
-    //显示编剧列表
+    /**
+     * @author WEIYIZHENG
+     * @remark 显示编剧列表
+     * @param $request //搜索条件
+     * @return object
+     * */
     public function data(Request $request) {
         $res = Screenwriter::paginate($request->get('limit',30))->toArray();
         $data = [
