@@ -59,7 +59,7 @@
                         ,layEvent = obj.event; //获得 lay-event 对应的值
                     if(layEvent === 'del'){
                         layer.confirm('确认删除吗？', function(index){
-                            $.post("{{ route('admin.product.attrname_destroy') }}",{_method:'delete',ids:[data.id]},function (result) {
+                            $.post("{{ route('admin.screen.writer.destroy') }}",{_method:'delete',ids:[data.id]},function (result) {
                                 if (result.code==0){
                                     obj.del(); //删除对应行（tr）的DOM结构
                                 }
@@ -84,7 +84,7 @@
                     }
                     if (ids.length>0){
                         layer.confirm('确认删除吗？', function(index){
-                            $.post("{{ route('admin.product.attrname_destroy') }}",{_method:'delete',ids:ids},function (result) {
+                            $.post("{{ route('admin.screen.writer.destroy') }}",{_method:'delete',ids:ids},function (result) {
                                 if (result.code==0){
                                     dataTable.reload()
                                 }
