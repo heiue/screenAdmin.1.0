@@ -284,8 +284,29 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth'
         //编辑
         Route::get('screenwriter/{id}/edit','ScreenwriterController@edit')->name('admin.screen.writer.edit');
         Route::put('screenwriter/{id}/update', 'ScreenwriterController@update')->name('admin.screen.writer.update');
+
+        //删除
+        Route::delete('screenwriter/destroy', 'ScreenwriterController@destroy')->name('admin.screen.writer.destroy');
     });
 });
 
 //剧本
-//Route::group([]);
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'permission:script.manage']],function () {
+    //剧本
+    Route::group(['middleware' => 'permission:script.index'], function () {
+        //展示页
+        Route::get('script/index', 'ScriptController@index')->name('admin.script.index');
+        Route::get('script/data', 'ScriptController@data')->name('admin.script.data');
+
+        //添加
+        Route::get('script/create', 'ScriptController@create')->name('admin.script.create');
+        Route::post('script/save', 'ScriptController@save')->name('admin.script.save');
+
+        //编辑
+        Route::get('script/{id}/edit','ScriptController@edit')->name('admin.script.writer.edit');
+        Route::put('script/{id}/update', 'ScriptController@update')->name('admin.script.update');
+
+        //删除
+        Route::delete('script/destroy', 'ScriptController@destroy')->name('admin.script.destroy');
+    });
+});
