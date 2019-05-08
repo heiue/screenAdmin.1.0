@@ -110,6 +110,5 @@ class ScriptController extends Controller
             return response()->json(['code'=>0,'msg'=>'删除成功']);
         }
         return response()->json(['code'=>1,'msg'=>'删除失败']);
-
     }
 }
