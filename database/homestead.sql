@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-04-29 07:18:27
+Date: 2019-05-09 20:54:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -450,7 +450,7 @@ CREATE TABLE `permissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of permissions
@@ -523,6 +523,8 @@ INSERT INTO `permissions` VALUES ('71', 'product.cates.edit', 'web', '商品分�
 INSERT INTO `permissions` VALUES ('72', 'product.cates.destroy', 'web', '商品分类删除', 'admin.product.cates_destroy', null, '66', '0', '2019-01-31 14:45:12', '2019-01-31 14:45:12');
 INSERT INTO `permissions` VALUES ('73', 'screenwriter.manage', 'web', '编剧管理', null, '31', '0', '0', '2019-04-27 10:34:07', '2019-04-27 20:13:06');
 INSERT INTO `permissions` VALUES ('74', 'screen.writer.index', 'web', '编剧', 'admin.screen.writer', null, '73', '0', '2019-04-27 10:41:26', '2019-04-27 11:03:02');
+INSERT INTO `permissions` VALUES ('75', 'script.manage', 'web', '剧本管理', null, '46', '0', '0', '2019-05-06 21:00:07', '2019-05-06 21:00:07');
+INSERT INTO `permissions` VALUES ('76', 'script.index', 'web', '剧本', 'admin.script.index', null, '75', '0', '2019-05-06 21:16:38', '2019-05-06 21:16:38');
 
 -- ----------------------------
 -- Table structure for positions
@@ -708,6 +710,47 @@ INSERT INTO `role_has_permissions` VALUES ('73', '1');
 INSERT INTO `role_has_permissions` VALUES ('73', '6');
 INSERT INTO `role_has_permissions` VALUES ('74', '1');
 INSERT INTO `role_has_permissions` VALUES ('74', '6');
+INSERT INTO `role_has_permissions` VALUES ('75', '6');
+INSERT INTO `role_has_permissions` VALUES ('76', '6');
+
+-- ----------------------------
+-- Table structure for screenwriters
+-- ----------------------------
+DROP TABLE IF EXISTS `screenwriters`;
+CREATE TABLE `screenwriters` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL COMMENT '编剧名字',
+  `rating` enum('1','2','3','4') DEFAULT NULL COMMENT '编剧评级',
+  `residence` varchar(255) DEFAULT NULL COMMENT '常住地',
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='编剧表';
+
+-- ----------------------------
+-- Records of screenwriters
+-- ----------------------------
+INSERT INTO `screenwriters` VALUES ('1', '武怡瞳', '4', '石家庄', '2019-05-01 15:35:40', '2019-05-01 16:22:47');
+INSERT INTO `screenwriters` VALUES ('3', '魏一铮', '2', '北京', '2019-05-01 15:36:57', '2019-05-01 15:36:57');
+
+-- ----------------------------
+-- Table structure for scripts
+-- ----------------------------
+DROP TABLE IF EXISTS `scripts`;
+CREATE TABLE `scripts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `scriptTitle` varchar(50) DEFAULT NULL COMMENT '剧本名称',
+  `scriptType` enum('1','2','3','4','5') DEFAULT NULL COMMENT '剧本类型',
+  `scriptTheme` enum('1','2','3','4','5') DEFAULT NULL COMMENT '剧本题材',
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='剧本表';
+
+-- ----------------------------
+-- Records of scripts
+-- ----------------------------
+INSERT INTO `scripts` VALUES ('3', '《双鱼村的半农时代》', '1', '3', '2019-05-06 22:47:55', '2019-05-06 22:47:55');
 
 -- ----------------------------
 -- Table structure for sites
